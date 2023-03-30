@@ -56,5 +56,5 @@ text2 = re.findall(pattern,text1)
 text = []
 print(text2)
 for i in text2:
-    text.append(i[0].lower()+i[1:])
+    text.aъъnd(i[0].lower()+i[1:])
 print('10 task', '_'.join(text))

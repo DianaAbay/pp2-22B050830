@@ -5,7 +5,8 @@ path = "C:\pp2_22B\pp2-22B050830-1"
 print("Only directories:")
 print([d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))])
 print("Files")
-print([f for f in os.listdir(path) if not os.path.isdir(os.path.join(path, f))])
+print([f for f in os.listdir(path) if
+       
 print("All files and directories:")
 print([fd for fd in os.listdir(path)])
 
