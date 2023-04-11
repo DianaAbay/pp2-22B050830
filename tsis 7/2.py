@@ -1,41 +1,55 @@
 import pygame
+import os
 
 pygame.init()
+screen = pygame.display.set_mode((300,300))
+clock=pygame.time.Clock()
 
-width = 400
-height = 600
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption('Spotify')
-icon = pygame.image.load('images/spotify.png')
-pygame.display.set_icon(icon)
-cover = pygame.image.load('images/cover.png')
-new_cover = pygame.transform.scale(cover, (400, 500))
-player = pygame.image.load('images/player.png')
-new_player = pygame.transform.scale(player, (400, 100))
 
-music_sound = [
-    pygame.mixer.Sound('sound/1.mp3'),
-    pygame.mixer.Sound('sound/2.mp3'),
-    pygame.mixer.Sound('sound/3.mp3')
-]
 
-selected_sound_index = 0
+direction = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 7\\music\\"
+dir = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 7\\image\\"
+files=os.listdir(direction)
+files1=os.listdir(dir)
+current = 0
+cur = 0
+background=pygame.image.load('tsis 7/image/images.jpg')
+screen.blit(background,(0,0))
+pygame.mixer.music.load(direction + files[current])
 
-running = True
-while running:
+
+play = pygame.K_SPACE
+next = pygame.K_RIGHT
+previous = pygame.K_LEFT
+
+pygame.mixer.music.play()
+
+done=False
+while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                music_sound[selected_sound_index].play()
-            elif event.key == pygame.K_DOWN:
-                music_sound[selected_sound_index].stop()
-            elif event.key == pygame.K_LEFT:
-                selected_sound_index = (selected_sound_index - 1) % len(music_sound)
-            elif event.key == pygame.K_RIGHT:
-                selected_sound_index = (selected_sound_index + 1) % len(music_sound)
+            done=True
+        if event.type == pygame.KEYDOWN:
+            if event.key == play:
+                if pygame.mixer.music.get_busy:
+                    pygame.mixer.music.pause()
+                else:
+                    pygame.mixer.music.unpause()
 
-    screen.blit(new_cover, (0, 0))
-    screen.blit(new_player, (0, 500))
+            elif event.key == next:
+                current = (current + 1) % len(files)
+                cur = (cur + 1) % len(files1)
+                pygame.mixer.music.load(direction + files[current])
+                background1=pygame.image.load('tsis 7/image/im.jpg')
+                screen.blit(background1,(0,0))
+                pygame.mixer.music.play()
+
+            elif event.key == previous:
+                current = (current - 1) % len(files)
+                cur = (cur -1) % len(files1)
+                pygame.mixer.music.load(direction + files[current])
+                background2=pygame.image.load('tsis 7/image/ima.jpg')
+                screen.blit(background2,(0,0))
+                pygame.mixer.music.play()
     pygame.display.update()
+    clock.tick()
