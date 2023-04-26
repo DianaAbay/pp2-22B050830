@@ -5,34 +5,35 @@ import time
 pygame.init()
 
 # colors
-color_black = pygame.Color(0, 0, 0)         # Black
-color_white = pygame.Color(255, 255, 255)   # White
-color_grey = pygame.Color(128, 128, 128)   # Grey
-color_red = pygame.Color(255, 0, 0)       # Red
-color_green = pygame.Color(0, 255, 0)      #Green
+black = pygame.Color(0, 0, 0)         
+white = pygame.Color(255, 255, 255)   
+red = pygame.Color(255, 0, 0)       
+green = pygame.Color(0, 255, 0)      
 
 
-height, width = 600, 400
+height=600
+width =400
 screen = pygame.display.set_mode((width, height))
-street = pygame.image.load("C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\AnimatedStrret.jpg")
-screen.blit(street, (0, 0))
+background = pygame.image.load('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\Background.png')
+screen.blit(background, (0, 0))
+pygame.mixer.music.load('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\audio.mp3')
+pygame.mixer.music.play()
 
 pygame.display.set_caption("Game")
-pygame.display.set_icon(pygame.image.load("C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\icon.jpg"))
+pygame.display.set_icon(pygame.image.load('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\icon.jpg'))
 
 clock = pygame.time.Clock()
-fps = 60
-small = pygame.font.SysFont("", 30)
-collection = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\collection.wav"
+font_small = pygame.font.SysFont("", 30)
+collection = ('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\tsis9_racing_collection.wav')
 
 # Sprites
 
-Player = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\Player.png"
-Opposite = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\Enemy.png"
-platinum = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\Platinum-Coin.jpg"
-gold = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\Gold-Coin.jpg"
-silver = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\Silver-Coin.jpg"
-bronze = "C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\Bronze-Coin (2).jpg"
+Player = ('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\Player.png')
+Enemy = ('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\Enemy.png')
+Bronze = ('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\Bronze_Coin .jpeg')
+Gold = ('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\Gold_Coin.jpeg')
+Platinum = ('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\Platinum_Coin.jpeg')
+Silver = ('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\Silver_Coin.jpeg')
 
 # Points
 
@@ -43,9 +44,7 @@ check = 6
 
 # Player car
 
-
 class Player_car(pygame.sprite.Sprite):
-
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(Player)
@@ -79,7 +78,7 @@ class Enemy(pygame.sprite.Sprite):
 
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(Opposite)
+        self.image = pygame.image.load('C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\Enemy.png')
         self.image = pygame.transform.scale(self.image, (35, 60))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), 0)
@@ -98,7 +97,7 @@ class Enemy(pygame.sprite.Sprite):
 class Bronze_Coin(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(bronze)
+        self.image = pygame.image.load(Bronze)
         self.image = pygame.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), 0)
@@ -119,7 +118,7 @@ class Bronze_Coin(pygame.sprite.Sprite):
 class Silver_Coin(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(silver)
+        self.image = pygame.image.load(Silver)
         self.image = pygame.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), 0)
@@ -137,7 +136,7 @@ class Silver_Coin(pygame.sprite.Sprite):
 class Golden_Coin(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(gold)
+        self.image = pygame.image.load(Gold)
         self.image = pygame.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), 0)
@@ -155,7 +154,7 @@ class Golden_Coin(pygame.sprite.Sprite):
 class Platinum_Coin(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(platinum)
+        self.image = pygame.image.load(Platinum)
         self.image = pygame.transform.scale(self.image, (25, 25))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(25, width-25), 0)
@@ -175,12 +174,12 @@ def game_over():
 
     # setting end game surfacse
 
-    boom = pygame.image.load("C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\boom.jpg")
+    boom = pygame.image.load('boom.jpeg')
     gameover = pygame.Surface(screen.get_size())
     gameover.fill((255, 0, 0))
     font = pygame.font.SysFont("", 80)
     text = font.render("GAME OVER", False, (0, 0, 0))
-    crash_sound = pygame.mixer.Sound("C:\\pp2_22B\\pp2-22B050830-1\\tsis 9\\for 1\\crash.wav")
+    crash_sound = pygame.mixer.Sound('for_crash.wav')
 
 
     # blit surfaces
@@ -198,16 +197,16 @@ def game_over():
 
 # Create sprites
 
-racer1 = Player_car()
-enemy1 = Enemy()
-enemy2 = Enemy()
-enemy3 = Enemy()
-enemy4 = Enemy()
-cheap1 = Bronze_Coin()
-cheap2 = Bronze_Coin()
-average1 = Silver_Coin()
-expensive1 = Golden_Coin()
-extravagant1 = Platinum_Coin()
+P1 = Player_car()
+E1 = Enemy()
+E2 = Enemy()
+E3 = Enemy()
+E4 = Enemy()
+B1 = Bronze_Coin()
+B2 = Bronze_Coin()
+S1 = Silver_Coin()
+G1 = Golden_Coin()
+Pl1 = Platinum_Coin()
 
 # Create Groups
 
@@ -221,14 +220,14 @@ Platinums = pygame.sprite.Group()
 
 # adding into groups
 
-Sprites.add(racer1)
-Sprites.add(enemy1)
-Sprites.add(cheap1)
-Sprites.add(average1)
-Players.add(racer1)
-Enemies.add(enemy1)
-Bronzes.add(cheap1)
-Silvers.add(average1)
+Sprites.add(P1)
+Sprites.add(E1)
+Sprites.add(B1)
+Sprites.add(S1)
+Players.add(P1)
+Enemies.add(E1)
+Bronzes.add(B1)
+Silvers.add(S1)
 
 # main loop
 
@@ -242,75 +241,75 @@ while exit:
 
     if counter >= 10 and counter <= 13:
         speed += 0.005
-        Sprites.add(cheap2)
-        Bronzes.add(cheap2)
+        Sprites.add(B2)
+        Bronzes.add(B2)
 
     if counter >= 20 and counter <= 23:
         speed += 0.005
-        Sprites.add(enemy2)
-        Enemies.add(enemy2)
-        Golds.add(expensive1)
-        Sprites.add(expensive1)
+        Sprites.add(B2)
+        Enemies.add(B2)
+        Golds.add(G1)
+        Sprites.add(G1)
 
     if counter >= 40 and counter <= 43:
         speed += 0.010
-        Sprites.add(enemy3)
-        Enemies.add(enemy3)
-        Platinums.add(extravagant1)
-        Sprites.add(extravagant1)
+        Sprites.add(E3)
+        Enemies.add(E3)
+        Platinums.add(P1)
+        Sprites.add(P1)
 
     if check*10 < counter:
         speed += 0.005
         check += 2
 
     if counter >= 120 and counter <= 130:
-        Sprites.add(enemy4)
-        Enemies.add(enemy4)
+        Sprites.add(E4)
+        Enemies.add(E4)
     
     # Conditions for crushing
 
-    if pygame.sprite.spritecollideany(racer1, Enemies):
+    if pygame.sprite.spritecollideany(P1, Enemies):
         game_over()
         exit = False
 
     # Conditions for coins
 
-    if pygame.sprite.spritecollideany(cheap1, Players):
+    if pygame.sprite.spritecollideany(B1, Players):
         counter += 1
         pygame.mixer.Channel(1).play(pygame.mixer.Sound(collection))
-        cheap1.calling_of_bronze()
+        B1.calling_of_bronze()
 
-    if pygame.sprite.spritecollideany(cheap2, Players):
+    if pygame.sprite.spritecollideany(B2, Players):
         counter += 1
         pygame.mixer.Channel(1).play(pygame.mixer.Sound(collection))
-        cheap2.calling_of_bronze()
+        B2.calling_of_bronze()
 
-    if pygame.sprite.spritecollideany(average1, Players):
+    if pygame.sprite.spritecollideany(S1, Players):
         counter += 2
         pygame.mixer.Channel(1).play(pygame.mixer.Sound(collection))
-        average1.calling_of_silver()
+        S1.calling_of_silver()
 
-    if pygame.sprite.spritecollideany(expensive1, Players):
+    if pygame.sprite.spritecollideany(G1, Players):
         counter += 4
         pygame.mixer.Channel(1).play(pygame.mixer.Sound(collection))
-        expensive1.calling_of_golden()
+        G1.calling_of_golden()
 
-    if pygame.sprite.spritecollideany(extravagant1, Players):
+    if pygame.sprite.spritecollideany(Pl1, Players):
         counter += 7
         pygame.mixer.Channel(1).play(pygame.mixer.Sound(collection))
-        extravagant1.calling_of_platinum()
+        Pl1.calling_of_platinum()
 
     # Blitting
 
-    screen.blit(street, (0, 0))
-    scores = small.render("Timer: "+str(minutes)+":"+str(round(seconds)), True, (0,0,0))
+    screen.blit(background, (0, 0))
+    scores = font_small.render("Timer: "+str(minutes)+":"+str(round(seconds)), True, (0,0,0))
     screen.blit(scores, (10, 10))
 
     for sprite in Sprites:
         screen.blit(sprite.image, sprite.rect)
         sprite.movement()
 
-    text = small.render("Coins:"+str(counter), True, (0, 0, 0))
+    text = font_small.render("Coins:"+str(counter), True, (0, 0, 0))
     screen.blit(text, (300, 10))
     seconds += 0.01
     if (seconds == 60):
@@ -320,4 +319,4 @@ while exit:
     # updating
 
     pygame.display.update()
-    clock.tick(fps)
+    clock.tick(60)
