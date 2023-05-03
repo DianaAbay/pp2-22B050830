@@ -1,0 +1,18 @@
+INSERT INTO users (first_name, last_name) VALUES ('Abylaikhan', 'Aman');
+INSERT INTO users (first_name, last_name) VALUES ('Olzhas', 'Aman');
+INSERT INTO users (first_name, last_name) VALUES ('Alikhan', 'Aman');
+INSERT INTO users (first_name, last_name) VALUES ('Daulet', 'Aman');
+INSERT INTO users (first_name, last_name) VALUES ('Arman', 'Aman');
+
+INSERT INTO passports (passport_number, city_of_registration, fk_passports_users) VALUES ('11111', 'Almaty', '1');
+INSERT INTO passports (passport_number, city_of_registration, fk_passports_users) VALUES ('22222', 'Almaty', '2');
+INSERT INTO passports (passport_number, city_of_registration, fk_passports_users) VALUES ('33333', 'Almaty', '3');
+INSERT INTO passports (passport_number, city_of_registration, fk_passports_users) VALUES ('44444', 'Almaty', '4');
+INSERT INTO passports (passport_number, city_of_registration, fk_passports_users) VALUES ('55555', 'Almaty', '5');
+SELECT * from users;
+SELECT id, first_name FROM users;
+SELECT * from passports;
+SELECT passport_number FROM passports;
+SELECT users.first_name, passports.passport_number FROM users, passports WHERE users.id=passports.fk_passports_users;
+DELETE FROM users WHERE id > 5;
+DELETE FROM passports WHERE id > 5;

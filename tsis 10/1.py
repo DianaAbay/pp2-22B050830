@@ -1,5 +1,5 @@
 import psycopg2
-from config1 import host,user,password,db1_name
+from config import host,user,password,db_name
 connection = None
 name = str(input())
 city = str(input())
@@ -9,7 +9,7 @@ try:
         host = host,
         user = user,
         password = password,
-        database = db1_name
+        database = db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -50,3 +50,4 @@ finally:
     if connection is not None:
         connection.close()
         print("PostgreSQL connection closed")
+        
